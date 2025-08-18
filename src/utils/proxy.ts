@@ -83,11 +83,25 @@ function getRandomProxy(): string {
   if (Array.isArray(proxies) && proxies.length > 0) {
     return proxies[Math.floor(Math.random() * proxies.length)];
   }
-  // Fallback to environment variable
+  
+  // Try to parse proxies from environment variable as JSON
+  if (process.env.PROXIES_JSON) {
+    try {
+      const envProxies = JSON.parse(process.env.PROXIES_JSON);
+      if (Array.isArray(envProxies) && envProxies.length > 0) {
+        return envProxies[Math.floor(Math.random() * envProxies.length)];
+      }
+    } catch (e) {
+      console.warn("Failed to parse PROXIES_JSON:", e);
+    }
+  }
+  
+  // Fallback to single proxy URL
   if (process.env.PROXY_URL) {
     return process.env.PROXY_URL;
   }
-  throw new Error("No proxies available. Please provide proxies.ts or set PROXY_URL in environment.");
+  
+  throw new Error("No proxies available. Please provide proxies.ts, PROXIES_JSON, or set PROXY_URL in environment.");
 }
 
 export async function proxyFetch(url: string, options?: RequestInit): Promise<Response> {
