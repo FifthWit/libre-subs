@@ -1,7 +1,5 @@
 /** @format */
 
-import { proxies } from "./proxies";
-
 export const USER_AGENTS = [
   // Windows browsers
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
@@ -79,20 +77,16 @@ const getHeaders = (userAgent: string, extraHeaders: Record<string, string> = {}
 };
 
 function getRandomProxy(): string {
-  // If PROXIES is available and non-empty, pick a random one
-  if (Array.isArray(proxies) && proxies.length > 0) {
-    return proxies[Math.floor(Math.random() * proxies.length)];
-  }
-  
-  // Try to parse proxies from environment variable as JSON
-  if (process.env.PROXIES_JSON) {
+  // Try base64 encoded proxies first
+  if (process.env.PROXIES_BASE64) {
     try {
-      const envProxies = JSON.parse(process.env.PROXIES_JSON);
+      const decodedProxies = Buffer.from(process.env.PROXIES_BASE64, 'base64').toString('utf-8');
+      const envProxies = JSON.parse(decodedProxies);
       if (Array.isArray(envProxies) && envProxies.length > 0) {
         return envProxies[Math.floor(Math.random() * envProxies.length)];
       }
     } catch (e) {
-      console.warn("Failed to parse PROXIES_JSON:", e);
+      console.warn("Failed to parse PROXIES_BASE64:", e);
     }
   }
   
@@ -101,7 +95,7 @@ function getRandomProxy(): string {
     return process.env.PROXY_URL;
   }
   
-  throw new Error("No proxies available. Please provide proxies.ts, PROXIES_JSON, or set PROXY_URL in environment.");
+  throw new Error("No proxies available. Please provide PROXIES_BASE64, PROXIES_JSON, or set PROXY_URL in environment.");
 }
 
 export async function proxyFetch(url: string, options?: RequestInit): Promise<Response> {
