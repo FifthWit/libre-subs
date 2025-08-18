@@ -3,6 +3,8 @@
 import { createErrorResponse, convertTmdbToImdb } from "~/utils/utils";
 import type { RequestType, ResponseType } from "~/utils/types";
 import { search } from "~/utils/function";
+import dotenv from "dotenv";
+dotenv.config();
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event);
@@ -142,7 +144,7 @@ export default defineEventHandler(async (event) => {
         const [source, id, filename] = originalUrl.split("/");
         if (source === "subdl" && id && filename) {
           const host =
-            process.env.NODE_ENV === "production" ?
+            process.env.DEPLOYMENT_URL ?
                process.env.DEPLOYMENT_URL
             : "http://localhost:3000";
           const pseudoVrf = id;
@@ -157,8 +159,8 @@ export default defineEventHandler(async (event) => {
           const vrf = vrfMatch[1];
           const fileId = fileIdMatch[1];
           const host =
-            process.env.NODE_ENV === "production" ?
-              process.env.DEPLOYMENT_URL
+            process.env.DEPLOYMENT_URL ?
+               process.env.DEPLOYMENT_URL
             : "http://localhost:3000";
           const formatParam = item.format ? `format=${encodeURIComponent(item.format)}` : "";
           const encodingParam =

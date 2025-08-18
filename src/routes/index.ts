@@ -15,18 +15,18 @@ export default eventHandler(() => {
     <meta name="twitter:site" content="@sudoflix" />
     <meta name="twitter:creator" content="@sudoflix" />
     <meta name="author" content="BadDeveloper" />
-    <meta name="theme-color" content="#1d4ed8" />
+    <meta name="theme-color" content="#22c55e" />
     <link rel="icon" href="https://i.postimg.cc/L5ppKYC5/cclogo.png" alt="Wyzie Subs Logo" />
-    <meta property="og:title" content="Wyzie Subs - Subtitles API" />
-    <meta property="og:description" content="A powerful subtitle scraping API for anything. <3" />
+    <meta property="og:title" content="Wyzie Subs - Actually FREE Subtitles API" />
+    <meta property="og:description" content="A truly free subtitle scraping API for everyone. No paywalls, no limits, just subtitles." />
     <meta property="og:image" content="https://i.postimg.cc/L5ppKYC5/cclogo.png" alt="Wyzie Subs Logo" />
     <meta property="og:url" content="https://sub.wyzie.ru" />
     <meta property="og:type" content="website" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://sub.wyzie.ru" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Wyzie Subs - Subtitles API" />
-    <meta name="twitter:description" content="A powerful subtitle scraping API for anything. <3" />
+    <meta name="twitter:title" content="Wyzie Subs - Actually FREE Subtitles API" />
+    <meta name="twitter:description" content="A truly free subtitle scraping API for everyone. No paywalls, no limits, just subtitles." />
     <meta name="twitter:image" content="https://i.postimg.cc/L5ppKYC5/cclogo.png" alt="Wyzie Subs Logo" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -118,7 +118,7 @@ export default eventHandler(() => {
         theme: {
           extend: {
             colors: {
-              primary: { "50": "#eff6ff", "100": "#dbeafe", "200": "#bfdbfe", "300": "#93c5fd", "400": "#60a5fa", "500": "#3b82f6", "600": "#2563eb", "700": "#1d4ed8" },
+              primary: { "50": "#f0fdf4", "100": "#dcfce7", "200": "#bbf7d0", "300": "#86efac", "400": "#4ade80", "500": "#22c55e", "600": "#16a34a", "700": "#15803d" },
               mono: { background: "#0b0b0b", card: "#111", accent: "#181818" },
               type: { emphasized: "#e0e0e0", subheader: "#d0d0d0", dimmed: "#c0c0c0", footer: "#6b7280" },
             },
@@ -142,14 +142,15 @@ export default eventHandler(() => {
       <main>
         <section>
           <p class="text-type-dimmed mb-1">
-            Wyzie Subs is a free & libre subtitles API that uses proxied requests and scraping instead of fetching directly from the API.
+            <span class="text-primary-500 font-bold">Wyzie Subs is 100% FREE</span> — no paywalls, no API keys, no rate limits. Just subtitles for everyone, forever.<br>
+            Built for the community, by the community.
           </p>
           <div class="flex flex-row items-center justify-between mb-4">
             <a href="https://docs.wyzie.ru/subs/intro" class="text-primary-500 font-semibold hover:text-primary-600 transition duration-100 underline" alt="Wyzie Subs docs" title="Read our docs">
               Read our docs
             </a>
-            <a href="https://donate.cozi.lol" class="text-primary-500 font-semibold hover:text-primary-600 transition duration-100 underline" alt="Donate to Wyzie Subs" title="Donate to Wyzie Subs">
-              Donate to us
+            <a href="https://ko-fi.com/fifthwit" class="text-primary-500 font-semibold hover:text-primary-600 transition duration-100 underline" alt="Donate to Wyzie Subs" title="Donate to Wyzie Subs on Ko-fi">
+              Donate @ Ko-fi
             </a>
           </div>
         </section>
@@ -377,8 +378,11 @@ export default eventHandler(() => {
       </p>
       <p class="mt-2 text-dark">
         Created by
-        <a href="https://github.com/itzcozi" class="text-primary-500 font-semibold hover:text-primary-600 transition duration-100 underline" alt="Developer social link" title="Developer Github link">BadDeveloper</a>
-        with 💙
+        <a href="https://github.com/itzcozi" class="text-primary-500 font-semibold hover:text-primary-600 transition duration-100 underline" alt="Developer social link" title="Developer Github link">FifthWit</a>
+        with 💚 for the open web.
+      </p>
+      <p class="mt-1 text-type-dimmed text-xs">
+        Wyzie Subs is <span class="text-primary-500 font-semibold">actually FREE</span> — no paywalls, no ads, no nonsense, just subtitles.
       </p>
     </footer>
   </body>

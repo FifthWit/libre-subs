@@ -7,7 +7,7 @@ export default eventHandler(() => {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Wyzie Subs - FAQ</title>
+    <title>Libre-Subs - FAQ</title>
     <meta name="description" content="A powerful subtitle scraping API for anything. <3" />
     <meta name="keywords" content="subtitles, subtitle scraper, API, movie subtitles, Wyzie Subs, open-subtitles scraper api, subtitles scraper api, free, open-source, open source" />
     <meta property="og:locale" content="en_US" />
