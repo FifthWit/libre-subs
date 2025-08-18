@@ -1,6 +1,6 @@
 /** @format */
 
-import { subtle } from "crypto";
+import { proxies } from "./proxies";
 
 export const USER_AGENTS = [
   // Windows browsers
@@ -78,45 +78,34 @@ const getHeaders = (userAgent: string, extraHeaders: Record<string, string> = {}
   return { ...defaultHeaders, ...extraHeaders };
 };
 
-async function deriveToken(sharedSecret: string, key: string): Promise<string> {
-  const encoder = new TextEncoder();
-  const keyMaterial = await subtle.importKey(
-    "raw",
-    encoder.encode(key),
-    { name: "HMAC", hash: "SHA-256" },
-    false,
-    ["sign"],
-  );
-
-  const signature = await subtle.sign("HMAC", keyMaterial, encoder.encode(sharedSecret));
-
-  return Array.from(new Uint8Array(signature))
-    .map((b) => b.toString(16).padStart(2, "0"))
-    .join("");
+function getRandomProxy(): string {
+  // If PROXIES is available and non-empty, pick a random one
+  if (Array.isArray(proxies) && proxies.length > 0) {
+    return proxies[Math.floor(Math.random() * proxies.length)];
+  }
+  // Fallback to environment variable
+  if (process.env.PROXY_URL) {
+    return process.env.PROXY_URL;
+  }
+  throw new Error("No proxies available. Please provide proxies.ts or set PROXY_URL in environment.");
 }
 
 export async function proxyFetch(url: string, options?: RequestInit): Promise<Response> {
   try {
-    const proxy = "https://i6.ilysm.nl";
+    const proxy = getRandomProxy();
     const proxyUrl = new URL(proxy);
     const userAgent = USER_AGENTS[Math.floor(Math.random() * USER_AGENTS.length)];
     const defaultHeaders = getHeaders(userAgent);
-    const sharedSecret = process.env.PROXY_SECRET;
-    if (!sharedSecret || sharedSecret.trim() === "") {
-      throw new Error("PROXY_SECRET is not set. Valve pls fix.");
-    }
-    const apiToken = await deriveToken(sharedSecret, userAgent);
 
-    proxyUrl.searchParams.set("url", url);
+    proxyUrl.searchParams.set("destination", url.replace(/\/+$/, "")); // Remove trailing slash from url param
     const proxyOptions = {
       ...options,
       headers: {
         ...defaultHeaders,
         ...options?.headers,
-        "API-Token": apiToken,
       },
     };
-
+    console.log(proxyUrl.toString(), proxyOptions)
     return fetch(proxyUrl.toString(), proxyOptions);
   } catch (e) {
     throw new Error(e);

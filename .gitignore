@@ -2,3 +2,7 @@
 /.nitro
 /cloudflare
 /.output
+/.vscode
+.proxies.json
+/src/utils/proxies.ts
+.env
