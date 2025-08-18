@@ -143,7 +143,7 @@ export default defineEventHandler(async (event) => {
         if (source === "subdl" && id && filename) {
           const host =
             process.env.NODE_ENV === "production" ?
-              "https://sub.wyzie.ru"
+               process.env.DEPLOYMENT_URL
             : "http://localhost:3000";
           const pseudoVrf = id;
           const cleanFilename = filename.endsWith(".zip") ? filename.slice(0, -4) : filename;
@@ -158,7 +158,7 @@ export default defineEventHandler(async (event) => {
           const fileId = fileIdMatch[1];
           const host =
             process.env.NODE_ENV === "production" ?
-              "https://sub.wyzie.ru"
+              process.env.DEPLOYMENT_URL
             : "http://localhost:3000";
           const formatParam = item.format ? `format=${encodeURIComponent(item.format)}` : "";
           const encodingParam =

@@ -1,9 +1,8 @@
 # wrangler.toml (wrangler v3.78.6^)
-name = "sub-scraping"
+name = "libre-subs"
 main = "./.output/server/index.mjs"
 compatibility_date = "2025-02-14"
 toconfig = "./tsconfig.json"
-route = { pattern = "sub.wyzie.ru", custom_domain = true }
 
 minify = true
 
@@ -14,7 +13,3 @@ head_sampling_rate = 1
 [build]
 command = "pnpm build:cloudflare"
 watch_dir = "src"
-
-[vars]
-PROXY_SECRET = "N7CCNDxwbIjtqkDehYpyMvcKzEDc9e3N"
-
