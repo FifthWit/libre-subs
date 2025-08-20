@@ -97,7 +97,7 @@ export default defineEventHandler(async (event) => {
   }
 
   if (source) {
-    const validSources = ["subdl", "opensubtitles"];
+    const validSources = ["subdl", "opensubtitles", "all"];
     const sourceList = source.split(",").map((s) => s.trim().toLowerCase());
 
     if (!sourceList.every((s) => validSources.includes(s))) {

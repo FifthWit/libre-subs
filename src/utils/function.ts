@@ -68,7 +68,8 @@ export async function search(request: RequestType): Promise<ResponseType[]> {
 
     const sources =
       Array.isArray(safeRequest.source) ? safeRequest.source
-      : typeof safeRequest.source === "string" ? safeRequest.source.split(",")
+      : typeof safeRequest.source === "string" ? 
+          safeRequest.source === "all" ? ["subdl", "opensubtitles"] : safeRequest.source.split(",")
       : [];
 
     const results: ResponseType[] = [];

@@ -1,0 +1,279 @@
+export default defineEventHandler(() => {
+    return `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LibreSubs - Subtitles API</title>
+    <meta name="description" content="A powerful subtitle scraping API for anything. <3" />
+    <meta name="keywords" content="subtitles, subtitle scraper, API, movie subtitles, LibreSubs, open-subtitles scraper api, subtitles scraper api, free, open-source, open source" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="LibreSubs" />
+    <meta name="twitter:site" content="@sudoflix" />
+    <meta name="twitter:creator" content="@sudoflix" />
+    <meta name="author" content="BadDeveloper" />
+    <meta name="theme-color" content="#1d4ed8" />
+    <link rel="icon" href="https://i.postimg.cc/L5ppKYC5/cclogo.png" alt="LibreSubs Logo" />
+    <meta property="og:title" content="LibreSubs - Actually FREE Subtitles API" />
+    <meta property="og:description" content="A truly free subtitle scraping API for everyone. No paywalls, no limits, just subtitles." />
+    <meta property="og:image" content="https://i.postimg.cc/L5ppKYC5/cclogo.png" alt="LibreSubs Logo" />
+    <meta property="og:type" content="website" />
+    <meta name="robots" content="index, follow" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="LibreSubs - Actually FREE Subtitles API" />
+    <meta name="twitter:description" content="A truly free subtitle scraping API for everyone. No paywalls, no limits, just subtitles." />
+    <meta name="twitter:image" content="https://i.postimg.cc/L5ppKYC5/cclogo.png" alt="LibreSubs Logo" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: { "50": "#f0fdf4", "100": "#dcfce7", "200": "#bbf7d0", "300": "#86efac", "400": "#4ade80", "500": "#22c55e", "600": "#16a34a", "700": "#15803d" },
+              mono: { background: "#0b0b0b", card: "#111", accent: "#181818" },
+              type: { emphasized: "#e0e0e0", subheader: "#d0d0d0", dimmed: "#c0c0c0", footer: "#6b7280" },
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body class="bg-mono-background min-h-screen flex flex-col items-center justify-center p-4 cursor-default">
+    <div class="bg-mono-card rounded-lg shadow-xl py-6 px-8 max-w-xl w-full">
+      <header class="flex items-center justify-between mb-5">
+        <h1 class="text-4xl font-bold text-primary-700">
+          <a class="hover:underline" href="https://wyzie.ru" alt="Toolset homepage" title="Toolset Homepage">Libre</a>
+          <span class="text-type-emphasized">Subs</span>
+        </h1>
+      </header>
+
+      <main>
+        <section>
+          <p class="text-type-dimmed mb-1">
+            <span class="text-primary-500 font-bold">LibreSubs is 100% FREE</span> — no paywalls, no API keys, no rate limits. Just subtitles for everyone, forever.<br>
+            Built for the community, by the community.
+          </p>
+          <div class="flex flex-row items-center justify-between mb-4">
+
+            <a href="https://ko-fi.com/fifthwit" class="text-primary-500 font-semibold hover:text-primary-600 transition duration-100 underline" alt="Donate to LibreSubs" title="Donate to LibreSubs on Ko-fi">
+              Donate
+            </a>
+          </div>
+        </section>
+
+        <section>
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-2xl font-semibold text-type-emphasized">
+              Basic Usage
+            </h2>
+            <a href="/faq" class="text-sm text-primary-500 font-semibold hover:text-primary-600 transition duration-100" alt="FAQ" title="FAQ">
+              FAQ
+            </a>
+          </div>
+        </section>
+
+        <section>
+          <div class="space-y-4 mb-5">
+            <div class="bg-mono-accent shadow-xl p-4 rounded-md flex flex-col gap-1">
+              <div class="flex flex-row gap-2 items-center">
+                <h3 class="font-semibold text-type-subheader">Search by IMDB / TMDB ID</h3>
+                <div title="ID parameter is required, either TMDB or IMDB.">
+                  <svg
+                    title="ID parameter is required, either TMDB or IMDB."
+                    class="text-type-dimmed w-4 h-4 mb-2"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide-icon lucide lucide-circle-alert text-type-dimmed w-4 h-4"
+                  >
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" x2="12" y1="8" y2="12"></line>
+                    <line x1="12" x2="12.01" y1="16" y2="16"></line>
+                  </svg>
+                </div>
+              </div>
+              <div class="flex flex-row gap-1">
+                <a href="/search?id=tt3659388" alt="Example link: search by IMDB ID" title="Search by IMDB ID">
+                  <code class="text-sm text-primary-500 hover:text-primary-600 transition duration-100 break-words">/search?id=tt3659388</code>
+                </a>
+                <span class="text-type-dimmed break-words mx-1">
+                  or
+                </span>
+                <a href="/search?id=286217" alt="Example link: search by TMDB ID" title="Search by TMDB ID">
+                  <code class="text-sm text-primary-500 hover:text-primary-600 transition duration-100 break-words">/search?id=286217</code>
+                </a>
+              </div>
+            </div>
+            <div class="bg-mono-accent shadow-xl p-4 rounded-md flex flex-col gap-1">
+              <h3 class="font-semibold text-type-subheader">Search by season and episode</h3>
+              <a href="/search?id=tt0121955&season=1&episode=1" alt="Example link: search by season and episode" title="Search by season and episode">
+                <code class="text-sm text-primary-500 hover:text-primary-600 transition duration-100 break-words">/search?id=tt0121955&season=1&episode=1</code>
+              </a>
+            </div>
+            <div class="bg-mono-accent shadow-xl p-4 rounded-md flex flex-col gap-1">
+              <div class="flex flex-row gap-2 items-center">
+                <h3 class="font-semibold text-type-subheader">Search by language</h3>
+                <div title="You can search multiple languages by separating them with a comma.">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide-icon lucide lucide-circle-alert text-type-dimmed w-4 h-4"
+                  >
+                    <circle cx="12" cy="12" r="1" />
+                    <circle cx="19" cy="12" r="1" />
+                    <circle cx="5" cy="12" r="1" />
+                  </svg>
+                </div>
+              </div>
+              <a href="/search?id=tt3659388&language=en" alt="Example link: search by language" title="Search by language">
+                <code class="text-sm text-primary-500 hover:text-primary-600 transition duration-100 break-words">/search?id=tt3659388&language=en</code>
+              </a>
+            </div>
+            <div class="bg-mono-accent shadow-xl p-4 rounded-md flex flex-col gap-1">
+              <div class="flex flex-row gap-2 items-center">
+                <h3 class="font-semibold text-type-subheader">Search by format</h3>
+                <div title="You can search multiple formats by separating them with a comma.">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide-icon lucide lucide-circle-alert text-type-dimmed w-4 h-4"
+                  >
+                    <circle cx="12" cy="12" r="1" />
+                    <circle cx="19" cy="12" r="1" />
+                    <circle cx="5" cy="12" r="1" />
+                  </svg>
+                </div>
+              </div>
+              <a href="/search?id=tt3659388&format=srt" alt="Example link: search by file format" title="Search by ID and format">
+                <code class="text-sm text-primary-500 hover:text-primary-600 transition duration-100 break-words">/search?id=tt3659388&format=srt</code>
+              </a>
+            </div>
+            <button onclick="toggleExtraOptions()" class="text-primary-500 font-semibold hover:text-primary-600 transition duration-100 mb-2" alt="Show More" style="font-size: 11pt;" title="Show More">
+              Show More
+            </button>
+            <div id="extra-options" class="hidden space-y-4">
+              <div class="bg-mono-accent shadow-xl p-4 rounded-md flex flex-col gap-1">
+                <div class="flex flex-row gap-2 items-center">
+                  <h3 class="font-semibold text-type-subheader">Search by character encoding</h3>
+                  <div title="You can search multiple encodings by separating them with a comma.">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="lucide-icon lucide lucide-circle-alert text-type-dimmed w-4 h-4"
+                    >
+                      <circle cx="12" cy="12" r="1" />
+                      <circle cx="19" cy="12" r="1" />
+                      <circle cx="5" cy="12" r="1" />
+                    </svg>
+                  </div>
+                </div>
+                <a href="/search?id=tt3659388&encoding=utf-8" alt="Example link: search by character encoding" title="Search by character encoding">
+                  <code class="text-sm text-primary-500 hover:text-primary-600 transition duration-100 break-words">/search?id=tt3659388&encoding=utf-8</code>
+                </a>
+              </div>
+              <div class="bg-mono-accent shadow-xl p-4 rounded-md flex flex-col gap-1">
+                <div class="flex flex-row gap-2 items-center">
+                  <h3 class="font-semibold text-type-subheader">Search by source</h3>
+                  <div title="You can search multiple sources by separating them with a comma.">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="lucide-icon lucide lucide-circle-alert text-type-dimmed w-4 h-4"
+                    >
+                      <circle cx="12" cy="12" r="1" />
+                      <circle cx="19" cy="12" r="1" />
+                      <circle cx="5" cy="12" r="1" />
+                    </svg>
+                  </div>
+                </div>
+                <a href="/search?id=tt3659388&source=subdl" alt="Example link: search using SubDL source" title="Search using SubDL source">
+                  <code class="text-sm text-primary-500 hover:text-primary-600 transition duration-100 break-words">/search?id=tt3659388&source=subdl</code>
+                </a>
+              </div>
+              <div class="bg-mono-accent shadow-xl p-4 rounded-md flex flex-col gap-1">
+                <h3 class="font-semibold text-type-subheader">Search by hearing impaired</h3>
+                <a href="/search?id=tt3659388&hi=true" alt="Example link: search by hearing impaired" title="Search by hearing impaired">
+                  <code class="text-sm text-primary-500 hover:text-primary-600 transition duration-100 break-words">/search?id=tt3659388&hi=true</code>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <a onclick="redirectToRandomLink()" class="flex justify-center" alt="Example check it out button" title="Example requests">
+            <button name="Example request" class="text-type-emphasized shadow-lg text-lg w-5/6 py-1 rounded bg-primary-700 hover:shadow-xl hover:scale-105 hover:bg-primary-700/90 duration-150">
+              Check it out
+            </button>
+          </a>
+          <div class="flex justify-between text-xs text-type-footer mt-7">
+            <p class="text-left">Made with <a href="https://nitro.unjs.io" class="text-primary-500 hover:text-primary-600 transition duration-100 underline" alt="Nitro framework" title="Nitro framework">Nitro</a></p>
+            <p class="text-right">
+              Version: 7.4
+            </p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer class="mt-8 text-center text-type-footer text-sm">
+      <p class="flex justify-center items-center space-x-2">
+        <a href="https://github.com/FifthWit" target="_blank" rel="noopener noreferrer" class="hover:text-primary-600 text-dark transition duration-100" alt="Github link" title="Github">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" class="w-5 h-5 fill-current" alt="Github SVG">
+            <path
+              d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"
+            />
+          </svg>
+        </a>
+      </p>
+      <p class="mt-2 text-dark">
+        Maintained by
+        <a href="https://github.com/FifthWit" class="text-primary-500 font-semibold hover:text-primary-600 transition duration-100 underline" alt="Developer social link" title="Developer Github link">FifthWit</a>
+        with 💚 for the open web.
+      </p>
+      <p class="mt-1 text-type-dimmed text-xs">
+        LibreSubs is <span class="text-primary-500 font-semibold">actually FREE</span> — no paywalls, no ads, no nonsense, just subtitles.
+      </p>
+    </footer>
+  </body>
+</html>`
+})
